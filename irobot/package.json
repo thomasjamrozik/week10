@@ -8,7 +8,7 @@
     "url": "http://jasontbradshaw.com"
   },
   "main": "./index",
-  "license":"MIT",
+  "license": "MIT",
   "licenses": [
     {
       "type": "MIT",
@@ -34,7 +34,7 @@
     "roomba"
   ],
   "dependencies": {
-    "lodash": "~2.4.1",
+    "lodash": "^4.5.0",
     "node.extend": "^1.1.5",
     "serialport": "^2.0.6"
   }

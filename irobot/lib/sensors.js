@@ -463,7 +463,7 @@ _.extend(module.exports, {
 });
 
 // an array of all sensor packets sorted by their id
-module.exports.ALL_SENSOR_PACKETS = _(module.exports).pick(function (p) {
+module.exports.ALL_SENSOR_PACKETS = _(module.exports).pickBy(function (p) {
   return p instanceof Packet;
 }).values().sortBy('id').value();
 

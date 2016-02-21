@@ -132,12 +132,11 @@ Robot.prototype._handleSensorData = function (newSensorData) {
     ];
 
     // call all the functions with our sensor data values and collect results
-    var emittedEvents = _.map(emitFunctions, function (emitFunction) {
-      return emitFunction.call(this, this._sensorData, newSensorData);
-    }, this);
+    var emittedEvents = _.invokeMap(emitFunctions,
+      _.call,this,this._sensorData,newSensorData);
 
     // if any of the events returned something truthy, emit the meta event
-    if (_.any(emittedEvents)) { this.emit('change'); }
+    if (_.some(emittedEvents)) { this.emit('change'); }
   }
 
   // update the stored sensor values now that we're done looking at them
@@ -161,7 +160,7 @@ Robot.prototype._init = function () {
   // start streaming all sensor data. we manually specify the packet ids we need
   // since streaming with the special bytes (id < 7) returns responses that
   // require special cases to parse correctly.
-  var packets = _.pluck(sensors.ALL_SENSOR_PACKETS, 'id');
+  var packets = _.map(sensors.ALL_SENSOR_PACKETS, 'id');
   this._sendCommand(commands.Stream, packets.length, packets);
 
   // give audible feedback that we've connected
@@ -405,7 +404,7 @@ Robot.prototype._detectOvercurrent = function (oldSensorData, newSensorData) {
 Robot.prototype._sendCommand = function (command) {
   // turn the arguments into a packet of command opcode followed by data bytes.
   // arrays in arguments after the first are flattened.
-  var packet = _.flatten(Array.prototype.slice.call(arguments, 1));
+  var packet = _.flattenDeep(Array.prototype.slice.call(arguments, 1));
   packet.unshift(command.opcode);
 
   var packetBytes = new Buffer(packet);
