@@ -645,7 +645,7 @@ Robot.prototype.drive = function (velocity, radius) {
     data.writeInt16BE(velocityRight, 2);
   }
 
-  this._sendCommand(command, data.toJSON());
+  this._sendCommand(command, data.toJSON().data);
 
   return this;
 };

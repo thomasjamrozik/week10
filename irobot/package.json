@@ -8,6 +8,7 @@
     "url": "http://jasontbradshaw.com"
   },
   "main": "./index",
+  "license":"MIT",
   "licenses": [
     {
       "type": "MIT",
@@ -22,7 +23,7 @@
     "url": "https://github.com/jasontbradshaw/irobot/issues"
   },
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=0.12.0"
   },
   "keywords": [
     "create",
@@ -34,7 +35,7 @@
   ],
   "dependencies": {
     "lodash": "~2.4.1",
-    "node.extend": "~1.0.8",
-    "serialport": "~1.2.5"
+    "node.extend": "^1.1.5",
+    "serialport": "^2.0.6"
   }
 }
